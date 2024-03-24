@@ -11,11 +11,6 @@
         <module name="domain-processor" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="domain-crawler" target="11" />
-      <module name="domain-processor" target="11" />
-      <module name="domain-service" target="11" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

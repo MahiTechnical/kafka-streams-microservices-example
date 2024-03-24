@@ -10,7 +10,9 @@ import reactor.core.publisher.Mono;
 public class DomainCrawlerService {
 
   private KafkaTemplate<String, Domain> kafkaTemplate;
-  private final String KAFKA_TOPIC = "web-domains";
+  private final String KAFKA_TOPIC = "web-domains-crawl";
+
+  private static int c = 0;
 
   public DomainCrawlerService(KafkaTemplate<String, Domain> kafkaTemplate) {
     this.kafkaTemplate = kafkaTemplate;
@@ -30,7 +32,7 @@ public class DomainCrawlerService {
       domainList.domains
           .forEach(domain -> {
             kafkaTemplate.send(KAFKA_TOPIC, domain);
-            System.out.println("Domain message" + domain.getDomain());
+            System.out.println(c++ + ": Domain message with  : " + domain.getDomain());
           });
     });
 

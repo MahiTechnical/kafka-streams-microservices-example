@@ -10,6 +10,8 @@ import java.util.function.Function;
 @Configuration
 public class DomainKafkaProcessor {
 
+  public int count =0;
+
   @Bean
   public Function<KStream<String, Domain>, KStream<String, Domain>> domainProcessor() {
 
@@ -17,7 +19,7 @@ public class DomainKafkaProcessor {
       if (domain.isDead()) {
         System.out.println("Inactive Domain: " + domain.getDomain());
       } else {
-        System.out.println("Active Domain: " + domain.getDomain());
+        System.out.println(count++ +": Active Domain: " + domain.getDomain());
       }
       return !domain.isDead();
     });

@@ -3,9 +3,9 @@ spring.cloud.stream:
     definition: domainProcessor
   bindings:
     domainProcessor-in-0:
-      destination: web-domains
+      destination: web-domains-crawl
     domainProcessor-out-0:
-      destination: active.web-domains
+      destination: active.web-domains-crawl
   kafka:
     bindings:
       domainProcessor-in-0:
@@ -22,3 +22,21 @@ spring.cloud.stream:
       brokers:
         - localhost:9091
         - localhost:9092
+spring:
+  kafka:
+    consumer:
+      properties:
+        spring.json.trusted.packages: com.techprimers.*
+    producer:
+      properties:
+        spring.json.add.type.headers: false
+    listener:
+      missing-topics-fatal: false
+  main:
+    banner-mode: OFF
+
+
+
+logging:
+  pattern:
+    console: "[Kafka Stream] %clr(%d{HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:%5p}) %clr(---){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
